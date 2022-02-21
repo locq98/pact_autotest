@@ -27,7 +27,6 @@ class TestAuthorization():
     @pytest.mark.parametrize('numbers', ['8001002030', 'номерТелефона', 'TelephoneNumber', '-78001002030'])
     def test_authorization_with_invalid_format_number(self, browser, numbers):
         #Попытки авторизации с номером: 1. без +7 или 8, 2. логин русскими/латинскими буквами, 3. Вместо + использовать -
-        #Максимальная длина логина должна состовлять 13 символов. Проверим ввод 14+ сиволов
         login_link = 'https://msg.pact.im/login'
         browser.get(login_link)
         browser.execute_script("document.getElementById('carrot-messenger-collapsed-frame').style.display = 'none';")
@@ -42,6 +41,7 @@ class TestAuthorization():
                browser.find_element(By.XPATH, '/html/body/div[1]/div/div/div[3]/div/div').text, 'авторизация происходит с невалидными данными'
 
     def test_registration_with_valid_data(self, browser):
+        #Регистрация аккаунта с валидными данными без успешного прохождения смс верификации на второй странице.
         random_int = randint(1000, 15000)
         random_numbers = randint(1000000, 9999999)
         random_email = f'ya.strokov+{random_int}@gmail.com'
