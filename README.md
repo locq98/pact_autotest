@@ -1,2 +1,2 @@
-# my_first_autotests
-My first autotests are stored here
+# pact_autotests
+Autotests are stored here
